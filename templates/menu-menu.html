@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block menu_menu_content %}
+
+    <link rel="stylesheet" href="{% static 'menu/menu.css' %}?v=1">
+
+<div class="menu-categories">
+    <ul>
+        <li><a href="{% url 'core:menu-content' %}">Menu</a></li>
+        <li><a href="">Featured</a></li>
+        <li><a href="">Previous</a></li>
+        <li><a href="">Favorites</a></li>
+    </ul>
+</div>
+
+{% block menu_sidenav_content %}    
+{% endblock %}
+
+{% endblock %}

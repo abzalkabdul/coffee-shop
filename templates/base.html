@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacbucks</title>
+</head>
+<body>
+
+    <link rel="stylesheet" href="{% static 'style.css' %}?v=2">
+
+    <nav class="top-bars">
+        <div class="left_bar">
+            <img src="{% static 'images/starbucks_icon.jpeg' %}" alt="starbucks icon">
+            <ul>
+                <li><a href="{% url 'core:menu-content'%}" class="menu">MENU</a></li>
+                <li><a href="{% url 'core:rewards'%}" class="rewards">REWARDS</a></li>
+                <li><a href="{% url 'core:gift_cards'%}" class="gift_cards">GIFT CARDS</a></li>
+            </ul>
+        </div>
+
+        <div class="right_bar">
+            <p>📍 Find a store</p>
+            <button id="sign_in">Sign in</button>
+            <button id="join_now">Join Now</button>
+        </div> 
+    </nav>
+
+
+
+    {% block menu_menu_content %}{% endblock %}
+
+
+</body>
+</html>

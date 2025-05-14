@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block menu_menu_content %}
+
+    <link rel="stylesheet" href="{% static 'menu/specified-item.css' %}?v=30">
+
+    <p id="menu-category">
+        <a href="{% url 'core:menu-content' %}" class="menu-category">Menu</a>/
+        <a href="{% url 'core:menu-content-specified' category %}" class="menu-category">{{ category }}</a> / 
+        <a href="{% url 'core:specified-item' category item_id %}" class="menu-category">{{ specified_item }}</a>
+   </a>
+
+    <div id="specified-item-div">
+        <img src="{{specified_item.image.url}}" alt="{{specified_item.name}}" width="300">
+        <div class="right-text-content">
+            <p class="name">{{ specified_item.name }}</p>
+            <p class="price">Price: {{ specified_item.price }} тг</p>
+            {% if specified_item.size %}
+                <p class="size">Size: {{ specified_item.get_size_display }}</p>
+            {% endif %}
+
+            <button type="submit" action="addToCart" id="addToCart">Add To Cart</button>
+        </div>
+    </div>
+
+{% endblock %}

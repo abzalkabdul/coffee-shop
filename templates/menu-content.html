@@ -1,0 +1,37 @@
+{% extends "menu-sidenav.html" %}
+{% load static %}
+
+{% block menu_content %}
+<link rel="stylesheet" href="{% static 'menu/menu.css' %}?v=1">
+
+<div class="menu-products">
+    <h1 id="just-menu">Menu</h1>
+    <h2>Drinks</h2>
+    <hr>
+    
+    <ul>
+        {% for category, image_url in drinks_categories_with_image.items %}
+            <a href="{% url 'core:menu-content-specified' category %}">
+                <li>
+                    <img src="{{image_url}}" alt="{{category}}" width="130">
+                    <p>{{ category }}</p>
+                </li>
+            </a>
+        {% endfor %}
+    </ul>
+        
+    <h2>Food</h2>
+    <hr>
+
+    <ul>
+        {% for category, image_url in food_categories_with_image.items %}
+            <a href="{% url 'core:menu-content-specified' category%}">
+                <li>
+                    <img src="{{image_url}}" alt={{category}} width="130">
+                    <p>{{category}}</p>
+                </li>
+            </a>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'menu-menu.html'%}
+{% load static %}
+
+{% block menu_sidenav_content %}
+
+<link rel="stylesheet" href="{% static 'menu/menu.css' %}?v=1">
+
+<div class="main-content">
+        <div class="menu-side-nav">
+
+            <h3>Drinks</h3>
+            <ul class='category-list'>
+                {% for category in drinks_categories %}
+                        <li>
+                            <a href="{% url 'core:menu-content-specified' category %}">
+                                {{ category }}
+                            </a>
+                        </li>
+                {% endfor %}
+            </ul>
+            <br>
+
+            <h3>Food</h3>
+            <ul class='category-list'>
+                {% for category in food_categories %}
+                    <li>
+                        <a href="{% url 'core:menu-content-specified' category %}">
+                            {{ category }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+            
+        </div>
+
+        {% block menu_content %}
+        {% endblock %}
+</div>
+
+{% endblock %}

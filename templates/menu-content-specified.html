@@ -1,0 +1,30 @@
+{% extends "menu-sidenav.html" %}
+{% load static %}
+
+{% block menu_content %}
+
+    <div class="menu-products">
+
+        <link rel="stylesheet" href="{% static 'menu/menu.css' %}?v=13">
+
+        <p id="menu-category"><a href="{% url 'core:menu-content' %}" class="menu-category">Menu </a>/<a 
+            href="{% url 'core:menu-content-specified' category %}" class="menu-category"> {{ category }}</a></p>
+        <h1 id="just-menu">{{ category }}</h1>        
+        <hr>
+
+        <div class="category_items">
+            <ul>
+                {% for item in category_items %}
+                    <a href="{% url 'core:specified-item' category=category item_id=item.id %}">
+                        <li>
+                                <img src="{{item.image.url}}" alt="{{item.name}}" width="130">
+                                <p>{{item.name}}</p>
+                        </li>
+                    </a>
+                {% endfor %}
+            <ul>
+        </div>
+    </div>
+
+
+{% endblock %}
