@@ -10,5 +10,4 @@ urlpatterns =[
     path('menu/content-specified/<str:category>/<int:item_id>/', views.specified_item, name='specified-item'),
     path('rewards/', views.rewards_view, name='rewards'),
     path('gift_cards/', views.gift_cards_view, name='gift_cards'),
-
 ]

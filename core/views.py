@@ -1,9 +1,23 @@
-from os import name
-from sys import intern
 from django.views import generic
 from django.shortcuts import render
 from .models import Drinks, Food
 from django.shortcuts import render
+from django.contrib.auth.forms import UserCreationForm
+
+from .forms import CreateUserForm
+
+def user_registration(request): 
+    form = CreateUserForm()
+
+    if request.method=="POST":
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+    return render(request, 'user_registration.html', context={'form': form})
+
+def user_login(request):
+    return render(request, 'user_login.html', context={})
 
 class MenuView(generic.ListView):
     context_object_name = 'menu_items'
