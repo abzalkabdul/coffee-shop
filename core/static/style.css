@@ -47,7 +47,7 @@ a{
     font-weight: bold;
     font-size: 13px;
 }
-#sign_in{
+#join_now{
     width: 85px;
     height: 35px;
     background-color: transparent; 
@@ -58,7 +58,7 @@ a{
     font-weight: bold;
     cursor: pointer;
 }
-#join_now{
+#sign_in{
     width: 85px;
     height: 35px;
     background-color: black; 
@@ -69,6 +69,6 @@ a{
     border: 1px solid black;
     cursor: pointer;
 }
-#join_now a{
+#sign_in a{
     color: white;
 }

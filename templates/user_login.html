@@ -29,6 +29,40 @@
         .form-inputs{
             font-family: monospace;
         }
+        .form-inputs p{
+            display: flex;
+            align-items: center;   
+        }
+        .form-inputs label{
+            width: 120px;
+            line-height: 3;
+            text-align: left;
+        }
+        .form-inputs input{
+            flex: 1;
+            padding: 5px;
+            border: none;
+            border-radius: 10px;
+            height: 20px;
+        }
+        .form-inputs button{
+            width: 90px;
+            height: 35px;
+            background-color: blue;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            margin-top: 30px;
+            font-size: 13px;
+            font-family: monospace;
+            display: block;
+            margin: 0 auto;
+            font-weight: bold;
+        }
+        .form-error{
+            font-size: 14px;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -43,8 +77,11 @@
             <form method="POST" action=".">
                 {% for f in form %}
                     {% csrf_token %}
-                    {{f}}
-                    <div style="color: #FF0000;" class="form-error">{{error}}</div>
+                    <p>
+                        <label class="form-label" for="{{f.id_for_label}}">{{f.label}}:</label>
+                        {{f}}
+                        <div style="color: #FF0000;" class="form-error">{{error}}</div>
+                    </p>
                 {% endfor %}
                 <button type="submit">Log in</button>
             </form>
