@@ -1,16 +1,88 @@
-<form method="POST" action="">
-    {% csrf_token %}
-    {{form.username.label}}
-    {{form.username}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
 
-    {{form.email.label}}
-    {{form.email}}
+        }
+        .form-container{
+            width: 90%;
+            max-width: 500px;
+            background-color: rgba(237, 233, 233, 0.948); 
+            border: 1px solid #000;
+            border-radius: 17px;
+            padding: 40px;
+            box-shadow: -10px -15px 20px rgb(0, 0, 0, 0.1);
+            font-size: 15px;
+            font-family: monospace;
+        }
+        .form-container h1{
+            padding-left: 140px;
+            margin-bottom: 30px;
+        }
+        .form-inputs{
+            font-family: monospace;
+        }
+        .form-inputs p{
+            display: flex;
+            align-items: center;   
+        }
+        .form-inputs label{
+            width: 180px;
+            line-height: 2;
+            text-align: left;
+        }
+        .form-inputs input{
+            flex: 1;
+            padding: 5px;
+            border: none;
+            border-radius: 10px;
+            height: 20px;
+        }
+        .form-inputs button{
+            width: 90px;
+            height: 35px;
+            background-color: green;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            float: right;
+            margin-top: 30px;
+            font-size: 13px;
+            font-family: monospace;
+        }
+        .form-error{
+            list-style-type: none;
+            color: #FF0000;
+        }
 
-    {{form.password1.label}}
-    {{form.password1}}
-
-    {{form.password2.label}}
-    {{form.password2}}
-
-    <button type="submit">Register</button>
-</form>
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Registration</h1>
+        <form method="POST" action=".">
+            {% csrf_token %}
+            <div class="form-inputs">
+                {% for f in form %}
+                    <p>
+                        <label class="form-label" for="{{f.id_for_label}}">{{ f.label }}:</label>
+                        {{f}} 
+                        <div class="form-error">
+                            {{ f.errors }}
+                        </div>
+                    </p>
+                {% endfor %}
+                <button type="submit">Register</button>
+            </div> 
+        </form>
+    </div>
+</body>
+</html>

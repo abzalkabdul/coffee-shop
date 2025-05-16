@@ -1,8 +1,9 @@
 from django.views import generic
 from django.shortcuts import render
 from .models import Drinks, Food
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 
 from .forms import CreateUserForm
 
@@ -13,6 +14,10 @@ def user_registration(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
+            user = form.cleaned_data.get('username')
+            messages.success(request, f'Account for {user} was created! ')
+             
+            return redirect('login')
 
     return render(request, 'user_registration.html', context={'form': form})
 
