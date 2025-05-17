@@ -4,7 +4,7 @@ from .models import Drinks, Food
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 
 from .forms import CreateUserForm
 
@@ -35,6 +35,12 @@ def user_login(request):
             messages.error(request, "Invalid username or password")
         
     return render(request, 'user_login.html', context={'form': form})
+
+
+def user_logout(request):
+    logout(request)
+    return redirect('core:menu-content')
+
 
 class MenuView(generic.ListView):
     context_object_name = 'menu_items'
@@ -97,7 +103,6 @@ def specified_item(request, category, item_id):
                                                           'drinks_categories': drinks_categories,
                                                           'specified_item_name': specified_item_name,
                                                            'specified_item': specified_item })
-                                                          
 
 def rewards_view(request):
     return render(request, 'rewards.html')

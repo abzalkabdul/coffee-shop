@@ -68,10 +68,6 @@
 <body>
     <div class="form-container">
 
-        {% for message in messages %}
-        <p>{{message}}</p>
-        {% endfor %}
-
         <h1>Authorization</h1>
         <div class="form-inputs">
             <form method="POST" action=".">
@@ -86,6 +82,11 @@
                 <button type="submit">Log in</button>
             </form>
         </div>
+
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+        
     </div>
 </body>
 </html>

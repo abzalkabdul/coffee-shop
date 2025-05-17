@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <link rel="stylesheet" href="{% static 'style.css' %}?v=4">
+    <link rel="stylesheet" href="{% static 'style.css' %}?v=5">
 
     <nav class="top-bars">
         <div class="left_bar">
@@ -22,8 +22,17 @@
 
         <div class="right_bar">
             <p>📍 Find a store</p>
-            <button id="join_now"><a href="{% url 'registration'%}">Register</a></button>
-            <button id="sign_in"><a href="{% url 'login'%}">Log in</a></button>
+
+            {% if user.is_authenticated %}
+                <span style="font-weight: bold;">👤 {{ user.username }}</span>
+                <form method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button id="logout">Log out</button>
+                </form>
+            {% else %}
+                <button id="join_now"><a href="{% url 'registration'%}">Register</a></button>
+                <button id="sign_in"><a href="{% url 'login'%}">Log in</a></button>
+            {% endif %}
         </div> 
     </nav>
 

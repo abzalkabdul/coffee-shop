@@ -72,3 +72,16 @@ a{
 #sign_in a{
     color: white;
 }
+#logout{
+    margin-left: 40px;
+    width: 85px;
+    height: 35px;
+    background-color: black; 
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    margin-right: 20px;
+    border-radius: 15px;
+    border: 1px solid black;
+    cursor: pointer;
+}
