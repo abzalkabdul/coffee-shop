@@ -3,7 +3,7 @@
 
 {% block menu_menu_content %}
 
-    <link rel="stylesheet" href="{% static 'menu/specified-item.css' %}?v=31">
+    <link rel="stylesheet" href="{% static 'menu/specified-item.css' %}?v=32">
 
     <p id="menu-category">
         <a href="{% url 'core:menu-content' %}" class="menu-category">Menu</a>/
@@ -19,8 +19,12 @@
             {% if specified_item.size %}
                 <p class="size">Size: {{ specified_item.get_size_display }}</p>
             {% endif %}
-
-            <button type="submit" action="addToCart" id="addToCart">Add To Cart</button>
+            <form method="POST" action="{% url 'core:cart' %}">
+                {% csrf_token %}
+                <input type="hidden" name="specified_item_id" value="{{specified_item.id}}">
+                <input type="hidden" name="specified_item_category" value="{{specified_item.category}}">
+                <button type="submit" action="addToCart" id="addToCart">Add To Cart</button>
+            </form>
         </div>
     </div>
 

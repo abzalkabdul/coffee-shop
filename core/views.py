@@ -1,10 +1,14 @@
+from unicodedata import category
+from django.http import HttpResponse
 from django.views import generic
 from django.shortcuts import render
-from .models import Drinks, Food
+from .models import Drinks, Food, Cart
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import login, logout
+from django.contrib.contenttypes.models import ContentType
+from django.views.decorators.csrf import csrf_exempt
 
 from .forms import CreateUserForm
 
@@ -95,6 +99,7 @@ def specified_item(request, category, item_id):
     if not specified_item_name or not Drinks.objects.filter(category=category):
         specified_item_name = Food.objects.get(pk=item_id).name
         specified_item = Food.objects.get(pk=item_id)
+
         
 
     return render(request, 'specified-item.html', context={'category': category,
@@ -102,7 +107,29 @@ def specified_item(request, category, item_id):
                                                           'food_categories': food_categories,
                                                           'drinks_categories': drinks_categories,
                                                           'specified_item_name': specified_item_name,
-                                                           'specified_item': specified_item })
+                                                           'specified_item': specified_item})
+
+@csrf_exempt
+def cart(request):
+    if request.method=="POST":
+        specified_item_id = request.POST.get("specified_item_id")
+        specified_item_category = request.POST.get("specified_item_category")
+        if specified_item_category in Drinks.objects.values_list('category', flat=True).distinct():
+            content_type = ContentType.objects.get_for_model(Drinks)
+            specified_item = Drinks.objects.get(pk=specified_item_id)
+        else:
+            content_type = ContentType.objects.get_for_model(Food)
+            specified_item = Food.objects.get(pk=specified_item_id)
+
+        Cart.objects.create(
+            content_type=content_type,
+            object_id=specified_item_id,
+            content_object=specified_item
+        )
+        cart_items = Cart.objects.all()
+
+        return render(request, 'cart.html', context={"cart_items": cart_items})
+    
 
 def rewards_view(request):
     return render(request, 'rewards.html')

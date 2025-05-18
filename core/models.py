@@ -65,6 +65,9 @@ class Cart(models.Model):
     class Meta:
         verbose_name_plural = "Cart"
 
+    def __str__(self):
+        return f"{self.content_object}, {self.object_id}"
+
 
 class Ticket(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
