@@ -47,3 +47,16 @@
     border-radius: 13px;
     font-weight: bold;
 }
+.buy-btn{
+    width: 120px;
+    height: 40px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 13px;
+    font-weight: bold;
+    position: absolute;
+    right: 0;
+    margin-right: 80px;
+    margin-bottom: 40px;
+}

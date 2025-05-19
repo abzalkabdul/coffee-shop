@@ -13,5 +13,8 @@ class FoodAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'category', 'price', 'quantity']
     search_display = ['name', 'category']
 
-admin.site.register(Cart)
+@admin.register(Cart)
+class CartAdmin(admin.ModelAdmin):
+    list_display = ['id', 'content_object', 'object_id']
+
 admin.site.register(Ticket)

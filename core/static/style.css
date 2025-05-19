@@ -85,3 +85,12 @@ a{
     border: 1px solid black;
     cursor: pointer;
 }
+.goToCart{
+    margin-right: 40px;
+    width: 100px;
+    height: 35px;
+    background-color: rgba(159, 209, 122, 0.788);
+    border: none;
+    border-radius: 13px;
+    font-weight: bold;
+}

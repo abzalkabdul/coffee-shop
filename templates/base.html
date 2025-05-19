@@ -8,20 +8,21 @@
 </head>
 <body>
 
-    <link rel="stylesheet" href="{% static 'style.css' %}?v=5">
+    <link rel="stylesheet" href="{% static 'style.css' %}?v=6">
 
     <nav class="top-bars">
         <div class="left_bar">
             <img src="{% static 'images/starbucks_icon.jpeg' %}" alt="starbucks icon">
             <ul>
                 <li><a href="{% url 'core:menu-content'%}" class="menu">MENU</a></li>
-                <li><a href="{% url 'core:rewards'%}" class="rewards">REWARDS</a></li>
-                <li><a href="{% url 'core:gift_cards'%}" class="gift_cards">GIFT CARDS</a></li>
+                <li><a href="" class="rewards">REWARDS</a></li>
+                <li><a href="" class="gift_cards">GIFT CARDS</a></li>
             </ul>
         </div>
 
         <div class="right_bar">
-            <p>📍 Find a store</p>
+            <button class="goToCart"><a href="{% url 'core:cart' %}" class="btn">Go to Cart</a>
+            </button>
 
             {% if user.is_authenticated %}
                 <span style="font-weight: bold;">👤 {{ user.username }}</span>
