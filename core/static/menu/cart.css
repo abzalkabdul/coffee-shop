@@ -1,5 +1,5 @@
 .item-containers{
-    margin-top: 40px;
+    margin-top: 80px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -8,7 +8,7 @@
 .item-container{
     display: flex;
     align-items: center;
-    width: 1000px;
+    width: 1100px;
     height: 100px;
     font-family: monospace;
 }
@@ -17,14 +17,28 @@
     font-size: 20px;
     font-weight: bold;
 }
-.item-container span{
+.total_price_and_buy span{
     margin-left: 90px;
     font-weight: bold;
     font-size: 20px;
+    
+}
+.item-char{
+    width: 400px;
+    position: absolute;
+    right: 0;
+    flex-wrap: wrap;
+    margin-right: 150px;
+    font-weight: bold;
+    font-size: 20px;
+}
+.item_price{
+    margin-top: -25px;
 }
 .minus-btn{
     width: 16px;
     height: 16px;
+    color: red;
     border: 1px solid;
     background-color: transparent;
     border-radius: 3px;
@@ -32,13 +46,20 @@
 .plus-btn{
     width: 16px;
     height: 16px;
+    color: green;
     border: 1px solid;
     background-color: transparent;
     border-radius: 3px;
 }
+.item_price{
+    position: absolute;
+    right: 0;
+    margin-right: 60px;
+}
 .delete-btn{
-    margin-left: auto;
-    margin-right: 40px;
+    position: absolute;
+    right: 0;
+    margin-right: 95px;
     width: 90px;
     height: 40px;
     background-color: #FF0000;
@@ -46,6 +67,13 @@
     border: none;
     border-radius: 13px;
     font-weight: bold;
+    margin-top: -20px;
+}
+.total_price_and_buy{
+    position: absolute;
+    right: 0;
+    font-weight: bold;
+    margin-right: 80px;
 }
 .buy-btn{
     width: 120px;
@@ -54,9 +82,12 @@
     color: white;
     border: none;
     border-radius: 13px;
-    font-weight: bold;
-    position: absolute;
-    right: 0;
-    margin-right: 80px;
     margin-bottom: 40px;
+    font-weight: bold;
+}
+.total_price_and_buy span{
+    font-weight: bold;
+    font-size: 30px;
+    font-family: 'Playfair Display', serif;
+    margin-right: 40px;
 }

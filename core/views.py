@@ -8,7 +8,6 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.contenttypes.models import ContentType
-from django.views.decorators.csrf import csrf_exempt
 
 from .forms import CreateUserForm
 
@@ -109,14 +108,20 @@ def specified_item(request, category, item_id):
                                                           'specified_item_name': specified_item_name,
                                                            'specified_item': specified_item})
 
-@csrf_exempt
 def cart(request):
-    cart_items = Cart.objects.all()
     if request.method=="POST":
         action = request.POST.get("action")
-        if action=="delete_item":
+        if action in ("decrease", "increase", "delete_item"):
             item_id = request.POST.get("item_id")
-            Cart.objects.get(id=item_id).delete()
+            get_item = Cart.objects.get(id=item_id)
+            if action=="delete_item":
+                get_item.delete()
+            elif action=="decrease":
+                get_item.quantity -= 1
+                get_item.save()
+            elif action=="increase":
+                get_item.quantity += 1
+                get_item.save()
 
         else:
             specified_item_id = request.POST.get("specified_item_id")
@@ -128,10 +133,18 @@ def cart(request):
                 content_type = ContentType.objects.get_for_model(Food)
                 specified_item = Food.objects.get(pk=specified_item_id)
 
-            Cart.objects.create(
-                content_type=content_type,
-                object_id=specified_item_id,
-                content_object=specified_item
-            )
+            cart_item, created_now = Cart.objects.get_or_create(
+                    content_type=content_type,
+                    object_id=specified_item_id,
+                    defaults={'content_object': specified_item, 'quantity':1}
+                )
+            if not created_now:
+                cart_item.quantity +=1
+                cart_item.save()
+    try:
+        cart_items = Cart.objects.all()
+    except cart_items.DoesNotExist: 
+        return HttpResponse("Cart Items Not Found. \nPlease, Add Some Products")
 
-    return render(request, 'cart.html', context={"cart_items": cart_items})
+    return render(request, 'cart.html', context={"cart_items": cart_items,
+                                                 "total_price": Cart.get_cart_total_price})

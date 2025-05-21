@@ -43,34 +43,23 @@ class Food(models.Model):
 class Cart(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE) #Drinks or Food
     object_id = models.PositiveIntegerField() #just id
-    content_object = GenericForeignKey('content_type', 'object_id') #id of Drinks or Food
-    is_paid = models.BooleanField(default=False)
+    content_object = GenericForeignKey('content_type', 'object_id')
+    quantity = models.PositiveIntegerField(default=1)
 
     @property
-    def get_drinks_total(self):
-        cart = Cart.objects.all()
-        Drinks = apps.get_model('core', 'Drinks')
-        total = 0
-        for obj in cart:
-            if isinstance(obj.content_object, Drinks):
-                total += obj.content_object.price * obj.content_object.quantity
-        return total
+    def get_item_total_price(self):
+        return self.content_object.price * self.quantity
     
-    @property
-    def get_cart_total_price(self):
-        cart = Cart.objects.all()
-        return sum([obj.content_object.price * obj.content_object.quantity 
-                    for obj in cart if obj.content_object is not None])
+    @classmethod
+    def get_cart_total_price(cls):
+        total = 0
+        for item in cls.objects.all():
+            total += item.content_object.price * item.quantity
+        return total
     
     class Meta:
         verbose_name_plural = "Cart"
 
     def __str__(self):
-        return f"{self.content_object}, {self.object_id}"
-
-
-class Ticket(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-    
+        return f"{self.content_object}, {self.object_id}, {self.quantity}"
     

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Drinks, Food, Cart, Ticket
+from .models import Drinks, Food, Cart
 
 @admin.register(Drinks)
 class DrinksAdmin(admin.ModelAdmin):
@@ -16,5 +16,3 @@ class FoodAdmin(admin.ModelAdmin):
 @admin.register(Cart)
 class CartAdmin(admin.ModelAdmin):
     list_display = ['id', 'content_object', 'object_id']
-
-admin.site.register(Ticket)
