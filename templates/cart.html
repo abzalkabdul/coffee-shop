@@ -4,12 +4,12 @@
 {% block menu_menu_content %}
 
 {% if user.is_authenticated %}
-    <link rel="stylesheet" href="{% static 'menu/cart.css' %}?v=23">
+    <link rel="stylesheet" href="{% static 'menu/cart.css' %}?v=24">
 
     <h1 style="margin: 80px 0 0 190px; font-size: 60px;">Cart</h1>
     <div class="total_price_and_buy">
         <span>Total Price:{{total_price}} tg --></span>
-        <button class="buy-btn">Buy All</button>
+        <button class="buy-btn"><a href="{% url 'core:after_payment' %}">Buy All</a></button>
     </div>
 
     <div class="item-containers">

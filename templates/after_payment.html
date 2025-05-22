@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block menu_menu_content %}
+<style>
+    .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin-top: -100px;
+    }
+    p{
+        width: 400px;
+        height: 200px;
+        font-family: Arial, sans-serif;
+        font-size: 30px;
+        background-color: grey;
+        color: white;
+        border: 1px solid;
+        border-radius: 8px;
+        box-shadow: 10px 10px 10px rgb(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+<div class="container">
+    <p>Thanks for your purchase!</p>
+</div>
+{% endblock%}

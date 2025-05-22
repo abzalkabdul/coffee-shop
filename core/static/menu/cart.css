@@ -79,11 +79,13 @@
     width: 120px;
     height: 40px;
     background-color: green;
-    color: white;
     border: none;
     border-radius: 13px;
     margin-bottom: 40px;
     font-weight: bold;
+}
+.buy-btn a{
+    color: white;
 }
 .total_price_and_buy span{
     font-weight: bold;

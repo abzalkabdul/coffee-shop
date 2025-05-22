@@ -9,4 +9,5 @@ urlpatterns =[
     path('menu/content-specified/<str:category>/', views.menu_specified, name='menu-content-specified'),
     path('menu/content-specified/<str:category>/<int:item_id>/', views.specified_item, name='specified-item'),
     path('cart/', views.cart, name='cart'),
+    path('after_payment', views.after_payment, name='after_payment'),
 ]
